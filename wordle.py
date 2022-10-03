@@ -5,10 +5,10 @@ class Wordle():
     DICT = '/usr/share/dict/words'
     ATOZ = 'abcdefghijklmnopqrstuvwxyz'
 
-    def __init__(self, in_place='.....', in_words=[], letters_not_in_word='', debug=False):
-        self.in_place            = in_place
-        self.in_words            = in_words
-        self.letters_not_in_word = letters_not_in_word
+    def __init__(self, green='.....', yellows=[], greys='', debug=False):
+        self.green   = green
+        self.yellows = yellows
+        self.greys   = greys
 
         # This array keeps track of the possible letters in each position
         self.wordle = [Wordle.ATOZ, Wordle.ATOZ, Wordle.ATOZ, Wordle.ATOZ, Wordle.ATOZ]
@@ -16,8 +16,8 @@ class Wordle():
         self.debug = debug
 
         self.process_green()
-        self.process_yellow()
-        self.process_grey()
+        self.process_yellows()
+        self.process_greys()
 
     def progress(self, msg):
         if (self.debug):
@@ -26,15 +26,15 @@ class Wordle():
 
     def process_green(self):
         """For any in-place (GREEN) letters, set those now"""
-        letters = list(self.in_place)
+        letters = list(self.green)
         for i in range(len(self.wordle)):
             if (letters[i] != '.'):
                 self.wordle[i] = letters[i]
         self.progress(f"[process_green]: {self.wordle}")
 
-    def process_yellow(self):
+    def process_yellows(self):
         """Remove from each position any yellow letters."""
-        for in_word in self.in_words:
+        for in_word in self.yellows:
             letters = list(in_word)
             for i in range(len(self.wordle)):
                 letter = letters[i]
@@ -42,15 +42,15 @@ class Wordle():
                     # Remove
                     self.wordle[i] = self.wordle[i].replace(letter, "")
 
-        self.progress(f"[process_yellow] {self.wordle}")
+        self.progress(f"[process_yellows] {self.wordle}")
 
-    def process_grey(self):
-        letters = list(self.letters_not_in_word)
+    def process_greys(self):
+        letters = list(self.greys)
         for i in range(len(self.wordle)):
             for letter in letters:
                 self.wordle[i] = self.wordle[i].replace(letter, "")
 
-        self.progress(f"[process_grey] {self.wordle}")
+        self.progress(f"[process_greys] {self.wordle}")
 
     def regex_from_wordle(self):
         rx = ""
@@ -60,9 +60,9 @@ class Wordle():
         return re.compile(f"^{rx}$")
 
     def get_present_regexes(self):
-        """From the self.in_words generate regexes"""
+        """From the self.yellows generate regexes"""
         letters_present = {}
-        for in_word in self.in_words:
+        for in_word in self.yellows:
             letters = list(in_word)
             for letter in letters:
                 if (letter != '.'):
@@ -121,42 +121,37 @@ class Wordle():
 ########################################################################################
 ########################################################################################
 
-IN_PLACE    = "...i."
-IN_WORD     = "ati"
-NOT_IN_WORD = "slero"
-
-
 #IN_PLACE    = "....."
-#IN_WORDS    = ["ra..n", "..a.."]
-#NOT_IN_WORD = "stledo"
+#YELLOWS    = ["ra..n", "..a.."]
+#GREYS = "stledo"
 
 IN_PLACE    = "t...e"
-IN_WORDS     = ["...t."]
-NOT_IN_WORD = "slarop"
+YELLOWS     = ["...t."]
+GREYS = "slarop"
 
 #IN_PLACE    = "....e"
-#IN_WORDS    = ["d....", "..id."]
-#NOT_IN_WORD = "stalronch"
+#YELLOWS    = ["d....", "..id."]
+#GREYS = "stalronch"
 
-IN_PLACE    = "s...."
-IN_WORDS     = ["r..no"]
-NOT_IN_WORD = "latehi"
+GREEN    = "s...."
+YELLOWS     = ["r..no"]
+GREYS = "latehi"
 
-IN_PLACE     = "....."
-IN_WORDS     = ["s....", "r...."]
-NOT_IN_WORD = "latehino"
+GREEN     = "....."
+YELLOWS     = ["s....", "r...."]
+GREYS = "latehino"
 
-IN_PLACE     = "....."
-IN_WORDS     = ["..at.", ".at.."]
-NOT_IN_WORD = "slero"
+GREEN     = "....."
+YELLOWS     = ["..at.", ".at.."]
+GREYS = "slero"
 
-IN_PLACE     = "....."
-IN_WORDS     = ["..a..", "ra..n"]
-NOT_IN_WORD = "stledo"
+#GREEN     = "....."
+#YELLOWS     = ["..a..", "ra..n"]
+#GREYS = "stledo"
 
-wordle = Wordle(in_place=IN_PLACE,
-                in_words=IN_WORDS,
-                letters_not_in_word=NOT_IN_WORD,
+wordle = Wordle(green=GREEN,
+                yellows=YELLOWS,
+                greys=GREYS,
                 debug=False,
                 )
 
