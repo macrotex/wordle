@@ -1,8 +1,8 @@
 # Wordle word finder
 
-This code generates a list of Wordle words that match a partial Wordle
-puzzle. This is most easily seen with an example. Here is Wordle puzzle from
-September 2022:
+The code in [`wordle.py`](wordle.py) generates a list of Wordle words that
+match a partial Wordle puzzle. This is most easily seen with an example.
+Here is Wordle puzzle from September 2022:
 
 ![Wordle puzzle](wordle-example.png)
 
