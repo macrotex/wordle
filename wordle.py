@@ -1,9 +1,5 @@
 import re
 
-DEBUG = True
-#DEBUG = False
-
-
 class Wordle():
     # Class variables
     DICT = '/usr/share/dict/words'
@@ -34,7 +30,7 @@ class Wordle():
         for i in range(len(self.wordle)):
             if (letters[i] != '.'):
                 self.wordle[i] = letters[i]
-        self.progress(f"in_place: {self.wordle}")
+        self.progress(f"[process_green]: {self.wordle}")
 
     def process_yellow(self):
         """Remove from each position any yellow letters."""
@@ -46,7 +42,7 @@ class Wordle():
                     # Remove
                     self.wordle[i] = self.wordle[i].replace(letter, "")
 
-        self.progress(f"[remove_yellow] {self.wordle}")
+        self.progress(f"[process_yellow] {self.wordle}")
 
     def process_grey(self):
         letters = list(self.letters_not_in_word)
@@ -54,7 +50,7 @@ class Wordle():
             for letter in letters:
                 self.wordle[i] = self.wordle[i].replace(letter, "")
 
-        self.progress(f"[remove_grey] {self.wordle}")
+        self.progress(f"[process_grey] {self.wordle}")
 
     def regex_from_wordle(self):
         rx = ""
@@ -115,6 +111,7 @@ class Wordle():
         return matches
 
     def get_matches(self):
+        """This is what you want to run to get the matches."""
         all_regexes = self.all_regexes()
         return self.filter(all_regexes)
 
