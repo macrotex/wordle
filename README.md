@@ -33,8 +33,12 @@ frisk
 grids
 ```
 
-The default word list used `/usr/share/dict/words`. To use a different word list specify
-the `dict` parameter:
+That is, the solution of the above puzzle must be one of the above words. (The
+actual solution for that particular puzzle was `brisk`.)
+
+DISCLAIMER: The default word list used is `/usr/share/dict/words` which
+almost certainly does _not_ match the official Wordle word list. To use a
+_different_ word list specify the `dict` parameter:
 
 ```
 from wordle import Wordle
