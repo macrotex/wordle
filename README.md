@@ -33,7 +33,7 @@ frisk
 grids
 ```
 
-The default word list used '/usr/share/dict/words'. To use a different word list specify
+The default word list used `/usr/share/dict/words`. To use a different word list specify
 the `dict` parameter:
 
 ```
