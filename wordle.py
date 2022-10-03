@@ -121,6 +121,7 @@ class Wordle():
 ########################################################################################
 ########################################################################################
 
+"""
 #IN_PLACE    = "....."
 #YELLOWS    = ["ra..n", "..a.."]
 #GREYS = "stledo"
@@ -149,6 +150,10 @@ GREYS = "slero"
 #YELLOWS     = ["..a..", "ra..n"]
 #GREYS = "stledo"
 
+GREEN     = "s...."
+YELLOWS     = ["...t.", ".n..t"]
+GREYS = "laeou"
+
 wordle = Wordle(green=GREEN,
                 yellows=YELLOWS,
                 greys=GREYS,
@@ -157,3 +162,4 @@ wordle = Wordle(green=GREEN,
 
 matches = wordle.get_matches()
 print("\n".join(matches))
+"""
