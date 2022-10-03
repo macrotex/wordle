@@ -6,9 +6,8 @@ September 2022:
 
 ![Wordle puzzle](wordle-example.png)
 
-
-Here is the code to generate a list of possible word matches given the first two
-lines of the above puzzle:
+Here is the code to generate a list of possible word matches given the three lines
+of the above puzzle:
 ```
 from wordle import Wordle
 
@@ -32,4 +31,25 @@ brisk
 cribs
 frisk
 grids
+```
+
+The default word list used '/usr/share/dict/words'. To use a different word list specify
+the `dict` parameter:
+
+```
+from wordle import Wordle
+
+GREEN   = "..i.."
+YELLOWS = ["s....", "r...."]
+GREYS   = "latehnopm"
+DICT    = '/usr/share/some/other/wordlist'
+
+wordle = Wordle(green=GREEN,
+                yellows=YELLOWS,
+                greys=GREYS,
+                dict=DICT,
+                )
+
+matches = wordle.get_matches()
+print("\n".join(matches))
 ```

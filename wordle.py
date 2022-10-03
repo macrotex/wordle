@@ -5,7 +5,7 @@ class Wordle():
     DICT = '/usr/share/dict/words'
     ATOZ = 'abcdefghijklmnopqrstuvwxyz'
 
-    def __init__(self, green='.....', yellows=[], greys='', debug=False):
+    def __init__(self, green='.....', yellows=[], greys='', dict=DICT, debug=False):
         self.green   = green
         self.yellows = yellows
         self.greys   = greys
@@ -45,10 +45,16 @@ class Wordle():
         self.progress(f"[process_yellows] {self.wordle}")
 
     def process_greys(self):
+        """Remove any letter in the grey list _unless_ the letter is in a green square.
+        """
         letters = list(self.greys)
-        for i in range(len(self.wordle)):
-            for letter in letters:
-                self.wordle[i] = self.wordle[i].replace(letter, "")
+        for letter in letters:
+            if (letter in self.green):
+                msg = f"[process_greys] not removing '{letter}' as it is one of the greens"
+                self.progress(msg)
+            else:
+                for i in range(len(self.wordle)):
+                    self.wordle[i] = self.wordle[i].replace(letter, "")
 
         self.progress(f"[process_greys] {self.wordle}")
 
