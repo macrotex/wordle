@@ -1,7 +1,7 @@
 from wordle import Wordle
 
-GREEN   = "..i.."
-YELLOWS = ["s....", "r...."]
+GREEN   = ".ris."
+YELLOWS = ['s....', 'r....']
 GREYS   = "latehnopm"
 
 wordle = Wordle(green=GREEN,

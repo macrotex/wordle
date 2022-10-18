@@ -11,7 +11,7 @@ of the above puzzle:
 ```
 from wordle import Wordle
 
-GREEN   = "..i.."
+GREEN   = ".ris."
 YELLOWS = ["s....", "r...."]
 GREYS   = "latehnopm"
 
@@ -26,11 +26,8 @@ print("\n".join(matches))
 
 The output of running the above code:
 ```
-brigs
 brisk
-cribs
 frisk
-grids
 ```
 
 That is, the solution of the above puzzle must be one of the above words. (The
@@ -43,7 +40,7 @@ _different_ word list specify the `dict` parameter:
 ```
 from wordle import Wordle
 
-GREEN   = "..i.."
+GREEN   = ".ris."
 YELLOWS = ["s....", "r...."]
 GREYS   = "latehnopm"
 DICT    = '/usr/share/some/other/wordlist'
